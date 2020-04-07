@@ -3,7 +3,7 @@ Daily coding challenges in Data Structures and Algorithms (mostly Python)
 
 # Topics covered:
 
-## A. Beginner:
+## A. Beginner (Green):
     1. Array2D
     2. Data Abstraction
     3. Graph
@@ -14,7 +14,7 @@ Daily coding challenges in Data Structures and Algorithms (mostly Python)
     8. String
     9. Tree
 
-## B. Intermediate:
+## B. Intermediate (Blue):
     1. Algorithm Complexity
     2. Breadth-First Search
     3. Depth-First Search
