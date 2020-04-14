@@ -14,6 +14,12 @@ def addWord(root, s):
             tmp = tmp.child[ch]
     tmp.countLeaf += 1
 
+def suffix_traversal(root, level):
+    cnt = 1
+    for c in root.child:
+        cnt += suffix_traversal(root.child[c], level + 1)
+    return cnt
+
 def findWord(root, s):
      tmp = root
      for ch in s:
