@@ -40,43 +40,29 @@ def Prim(src):
 def distance(x1, y1, x2, y2):
     return math.sqrt((x1 - x2)**2 + (y1 - y2)**2)
 
-while True:
-    try:
-        n = int(input())
 
-        dist = [INF for i in range(n + 1)]
-        path = [-1 for i in range(n + 1)]
-        visited = [False for i in range(n + 1)]
+t = int(input())
+blank = input()
+for i in range(t):
+    n = int(input())
+    dist = [INF for i in range(n + 1)]
+    path = [-1 for i in range(n + 1)]
+    visited = [False for i in range(n + 1)]
 
-        point = []
+    point = []
+    for j in range(n):
+        x, y = map(float, input().split())
+        point.append((x, y))
 
-        for i in range(n):
-            x, y = map(int, input().split())
-            point.append((x, y))
+    graph = []
+    for j in range(n):
+        graph.append([])
+        for k in range(n):
+            graph[j].append(distance(point[j][0], point[j][1], point[k][0], point[k][1]))
 
-        graph = []
-
-        for j in range(n):
-            graph.append([])
-            for k in range(n):
-
-                graph[j].append(distance(point[j][0], point[j][1], point[k][0], point[k][1]))
-
-        m = int(input())
-        for i in range(m):
-            a, b = map(int, input().split())
-            graph[a - 1][b - 1] = 0
-            graph[b - 1][a - 1] = 0
-
-        Prim(0)
-        res = printMST()
-        print("%.2f" % res)
-
-    except EOFError:
-        exit()
-
-
-
-
-
-
+    Prim(0)
+    res = printMST()
+    print("%.2f" % res)
+    if i != t - 1:
+        blank = input()
+        print()

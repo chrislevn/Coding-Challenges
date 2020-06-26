@@ -1,54 +1,56 @@
-from queue import Queue
-
 dr = [0, 0, 1, -1]
 dc = [1, -1, 0, 0]
-MAX = 21
-visited = [[False] * MAX for i in range(MAX)]
-g = 1
-check = [None] * MAX
 
-def BFS(i, j, r, c):
-    check[i][j] = 1
-
-    if (i > 0) and (arr[i+1][j+1] ) == 1 and (check[i+1][j+1] == 0):
-        g += 1
-        BFS(i-1, j, n, m)
-
-    if (i < n - 1) and (arr[i+1][j] == 1)  and (check[i+1][j] == 0):
-        g += 1
-        BFS(i+1, j, n, m)
-
-    if (j > 0) and (arr[i][j-1] == 1) and (check[i][j-1] == 0):
-        g += 1
-        BFS(i, j-1, n, m)
-
-    if (j<m-1) and (arr[i][j+1] == 1)  and (check[i][j+1] == 0):
-        g += 1
-        BFS(i, j+1, n, m)
+MAX = 251
+table = [None] * MAX
+slick = [0] * (MAX * MAX)
+q = [None] * (MAX * MAX)
 
 
-while (True):
-    n, m = map(int, input().split())
-    if n == 0 and m == 0:
-        break
-    count = 0
-    arr = []
-    check = []
+def BFS(sr, sc):
+    left = right = 0
+    q[0] = (sr, sc)
+    table[sr][sc] = '0'
+    count = 1
 
-    for x in range(n):
-        temp = list(map(int, input().split()))
-        arr.append(temp)
-        temp_check = []
-        for y in range(m):
-            temp_check.append(0)
-        check.append(temp_check)
+    while left <= right:
+        ur, uc = q[left]
+        left += 1
 
-    for x in range(n):
-        for y in range(m):
-            if (arr[x][y] == 1) and (check[x][y] == 0):
+        for i in range(4):
+            r = ur + dr[i]
+            c = uc + dc[i]
+
+            if r in range(N) and c in range(M) and table[r][c] == '1':
+                right += 1
+                q[right] = (r, c)
+                table[r][c] = '0'
                 count += 1
-                BFS(x, y, n, m)
-    print(count)
+
+    slick[count] += 1
 
 
+while True:
+    N, M = map(int, input().split())
 
+    if N == 0 and M == 0:
+        break
+
+    for i in range(N):
+        table[i] = input().split()
+        for j in range(M):
+            slick[i * M + j + 1] = 0
+
+    nslicks = 0
+
+    for i in range(N):
+        for j in range(M):
+            if table[i][j] == '1':
+                nslicks += 1
+                BFS(i, j)
+
+    print(nslicks)
+
+    for i in range(1, N * M + 1):
+        if slick[i]:
+            print(i, slick[i], sep=' ')

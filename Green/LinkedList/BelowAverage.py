@@ -1,5 +1,5 @@
 class Node():
-    def __init__(self, data = 0):
+    def __init__(self, data):
         self.data = data
         self.next = None
 
@@ -9,7 +9,7 @@ class LinkedList():
         self.tail = None
 
     def insert_tail(self, value):
-        if self.tail == None:
+        if self.tail is None:
             self.head = self.tail = Node(value)
             return
 
