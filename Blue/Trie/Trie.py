@@ -21,12 +21,12 @@ def suffix_traversal(root, level):
     return cnt
 
 def findWord(root, s):
-     tmp = root
-     for ch in s:
-         if ch not in tmp.child:
+    tmp = root
+    for ch in s:
+        if ch not in tmp.child:
             return False
-         tmp = tmp.child[ch]
-      return tmp.countLeaf > 0
+        tmp = tmp.child[ch]
+    return tmp.countLeaf > 0
 
 def isWord(node):
     return node.countLeaf != 0
