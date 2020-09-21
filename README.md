@@ -28,10 +28,7 @@ Daily coding challenges in Data Structures and Algorithms (mostly Python)
     11. Trie
 ## Big 4 Coding interview:
 (Will update soon)
-    
-My blog on 30-Day Leetcode Challenge
 
-Week 1: https://medium.com/@locvicvn1234/my-30-day-leetcode-challenge-week-1-9ad8fbc16405
 
 
 I’m working on Leetcode’s problems. Will update soon.
