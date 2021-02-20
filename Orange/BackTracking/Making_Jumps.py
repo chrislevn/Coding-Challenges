@@ -24,7 +24,7 @@ def DFS(x, y, count):
     visited[x][y] = False
 
 if __name__ == "__main__":
-    arr = list(map(int, input().split(' ')))
+    arr = list(map(int, input().split()))
     n = arr[0]
     case = 1
 
@@ -44,10 +44,10 @@ if __name__ == "__main__":
         DFS(source_x,source_y,1)
         result = sum_squares - max_step
         if result == 1:
-            print("Case {}: {} square cannot be reached".format(case, result))
+            print("Case {}, {} square can not be reached.".format(case, result))
         else: 
-            print("Case {}: {} squares cannot be reached".format(case, result))
+            print("Case {}, {} squares can not be reached.".format(case, result))
 
         case += 1
-        arr = list(map(int, input().split(' ')))
+        arr = list(map(int, input().split()))
         n = arr[0]
