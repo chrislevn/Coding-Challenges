@@ -1,8 +1,6 @@
 import queue
 
 INF = 1e9
-
-
 class Node:
     def __init__(self, id, dist):
         self.dist = dist

@@ -63,7 +63,7 @@ def scripCloset(point_set, left, right, mid, dist_min):
     splitted_points = []
     
     for i in range(left, right): 
-        if abs(point_set[i].x - point_mid.x) <= dist_min: 
+        if abs(point_set[i].x - point_mid.x)**2 <= dist_min: 
             splitted_points.append(point_set[i])
     
     splitted_points.sort(key=lambda p: p.y)
