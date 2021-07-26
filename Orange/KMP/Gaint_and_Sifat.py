@@ -61,6 +61,15 @@ def KMP_search(t, p, prefix):
 
 
 def preprocess_string(input_string): 
+    """ 
+    Elimate spaces in string
+    
+    Args: 
+        input_string (str): input string
+    
+    Return: 
+        result (str): preprocessed string
+    """
     result = input_string.replace(" ", "")
     return result
 
@@ -70,8 +79,9 @@ if __name__ == '__main__':
     for i in range(t): 
         S = input()
         S = preprocess_string(S)
-        # print("Test", S)
+        
         s = input()
+        s = preprocess_string(s)
         
         prefix = [0] * len(S)
         KMP_preprocess(S, prefix)
