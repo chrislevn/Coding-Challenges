@@ -24,7 +24,7 @@ if __name__ == '__main__':
         L = [[-1] * (MAXN + 1) for i in range(MAXM + 1)]
         first = input() 
         second = input()
-        print('test', lcs_bottom_up(first, second, len(first), len(second), K))
+        print(lcs_bottom_up(first, second, len(first), len(second), K))
         
         K = int(input())
         

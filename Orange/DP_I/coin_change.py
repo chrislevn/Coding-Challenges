@@ -8,3 +8,13 @@ def coin_change(total, coins, n):
     
     return result[total]
 
+def print_solution(result, total, coins, n, pos): 
+    if total == 0: 
+        for r in result: 
+            print(r, end= ' ')
+        print()
+    for i in range(pos, n):
+        if total >= coins[i]: 
+            result.append(coins[i])
+            print_solution(result, total - coins[i], n, i)
+            result.pop()

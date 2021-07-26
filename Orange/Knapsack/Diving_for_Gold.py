@@ -35,8 +35,9 @@ if __name__ == '__main__':
         try:
             if flag:
                 space = input()
+            if flag: print()
             flag = True
-            
+
             t, w = map(int, input().split())
             num_treasures = int(input())
             
@@ -55,7 +56,7 @@ if __name__ == '__main__':
             
             for item in result_items[::-1]:
                 print(item[0], item[1])
-                        
+              
         except EOFError: 
             exit() 
         
