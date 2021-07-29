@@ -24,7 +24,7 @@ def KMP_preprocess(p, prefix):
                 prefix[i] = 0
                 i += 1
     
-        
+    
 def KMP_search(t, p, prefix): 
     """
     Search string in prefix
@@ -33,58 +33,68 @@ def KMP_search(t, p, prefix):
         t (str): input string 
         p (str): pattern string
         prefix (list): output prefix
-    
-    Return: 
-        result: number of times s occurs as 
-                a substring in S after 
-                removing all spaces from S.
     """
     
     n = len(t)
     m = len(p)
     i = j = 0
-    result = 0
+    
+    count = 0
     
     while i < n: 
         if p[j] == t[i]: 
             i += 1
             j += 1
         if j == m: 
-            result += 1
+            count += 1
             j = prefix[j - 1]
         elif i < n and p[j] != t[i]: 
             if j != 0: 
                 j = prefix[j - 1]
             else: 
                 i += 1
-    return result
+    return count
 
 
-def preprocess_string(input_string): 
-    """ 
-    Elimate spaces in string
+def binary_process(left, right, string, freq):
+    """
+    Check string in O(nlogn) complexity 
     
     Args: 
-        input_string (str): input string
-    
-    Return: 
-        result (str): preprocessed string
+        left (int): starting index
+        right (int): ending index
+        string (str): check str
+        freq (int): check frequency number 
+
     """
-    result = input_string.replace(" ", "")
-    return result
+    global result
+    
+    while (left <= right): 
+        mid = (right + left) // 2
+        check = string[0:mid+1]
+        prefix = [0] * len(check)
+        KMP_preprocess(check, prefix)
+        count = KMP_search(text, check, prefix)
+        
+        if count >= freq: 
+            result = check
+            left = mid + 1
+        else: 
+            right = mid - 1
+                    
+                
+if __name__ == "__main__": 
+    text = input()
+    original = input()
+    freq = int(input())
+    
+    count = ''
+    result = ''
+    
+    binary_process(0, len(original)-1, original, freq)
 
-
-if __name__ == '__main__': 
-    t = int(input())
-    for i in range(t): 
-        S = input()
-        S = preprocess_string(S)
+    print(result if result != '' else 'IMPOSSIBLE')
         
-        s = input()
-        s = preprocess_string(s)
-        
-        prefix = [0] * len(s)
-        KMP_preprocess(s, prefix)
-        final_result = KMP_search(S, s, prefix)
-        
-        print("Case {}: {}".format(i + 1, final_result))
+            
+    
+    

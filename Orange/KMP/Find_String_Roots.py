@@ -24,7 +24,7 @@ def KMP_preprocess(p, prefix):
                 prefix[i] = 0
                 i += 1
     
-        
+    
 def KMP_search(t, p, prefix): 
     """
     Search string in prefix
@@ -33,58 +33,65 @@ def KMP_search(t, p, prefix):
         t (str): input string 
         p (str): pattern string
         prefix (list): output prefix
-    
-    Return: 
-        result: number of times s occurs as 
-                a substring in S after 
-                removing all spaces from S.
     """
     
     n = len(t)
     m = len(p)
     i = j = 0
-    result = 0
+    count = 0
     
     while i < n: 
         if p[j] == t[i]: 
             i += 1
             j += 1
         if j == m: 
-            result += 1
+            count += 1
             j = prefix[j - 1]
         elif i < n and p[j] != t[i]: 
             if j != 0: 
                 j = prefix[j - 1]
             else: 
                 i += 1
-    return result
-
-
-def preprocess_string(input_string): 
-    """ 
-    Elimate spaces in string
+    return count
+                    
+                        
+def find_divisor(n): 
+    """
+    Find all divisor of a number
     
     Args: 
-        input_string (str): input string
+        n (int): input number
     
-    Return: 
-        result (str): preprocessed string
+    Returns: 
+        result (list): list of divisors of the number
     """
-    result = input_string.replace(" ", "")
+    i = 1
+    result = []
+    while i <= n: 
+        if (n % i == 0): 
+            result.append(i)
+        i += 1
     return result
 
 
 if __name__ == '__main__': 
-    t = int(input())
-    for i in range(t): 
-        S = input()
-        S = preprocess_string(S)
+    input_letter = input()
+    while input_letter != '*': 
+        length = len(input_letter)
+        divisors = find_divisor(length)
         
-        s = input()
-        s = preprocess_string(s)
+        S = len(input_letter)
         
-        prefix = [0] * len(s)
-        KMP_preprocess(s, prefix)
-        final_result = KMP_search(S, s, prefix)
+        prefix = [0] * len(input_letter)
+        KMP_preprocess(input_letter, prefix)
+        N = S * 1//(S - prefix[S-1])
+        res = S - prefix[S - 1]
         
-        print("Case {}: {}".format(i + 1, final_result))
+        if S % res == 0:         
+            print(N)
+        else: 
+            print(1)
+            
+        input_letter = input()
+        
+        

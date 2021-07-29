@@ -5,13 +5,14 @@ def KMP_preprocess(p, prefix):
     Args: 
         p (str): pattern string
         prefix (list): output prefix
+        
     """
     
     prefix[0] = 0
     m = len(p)
     Len = 0
     i = 1
-    
+        
     while i < m: 
         if p[i] == p[Len]: 
             Len += 1
@@ -24,7 +25,7 @@ def KMP_preprocess(p, prefix):
                 prefix[i] = 0
                 i += 1
     
-        
+    
 def KMP_search(t, p, prefix): 
     """
     Search string in prefix
@@ -33,58 +34,64 @@ def KMP_search(t, p, prefix):
         t (str): input string 
         p (str): pattern string
         prefix (list): output prefix
-    
-    Return: 
-        result: number of times s occurs as 
-                a substring in S after 
-                removing all spaces from S.
+        
+    Returns: 
+        count (int): number of time p in t
     """
     
     n = len(t)
     m = len(p)
     i = j = 0
-    result = 0
     
+    count = 0
+
     while i < n: 
         if p[j] == t[i]: 
             i += 1
             j += 1
         if j == m: 
-            result += 1
+            count += 1
             j = prefix[j - 1]
         elif i < n and p[j] != t[i]: 
             if j != 0: 
                 j = prefix[j - 1]
             else: 
                 i += 1
-    return result
-
-
-def preprocess_string(input_string): 
-    """ 
-    Elimate spaces in string
+    return count
+                    
+def process_array(input_arr): 
+    """
+    Process array based on the elements' previous number
     
     Args: 
-        input_string (str): input string
+        input_array (list): input array
     
-    Return: 
-        result (str): preprocessed string
+    Returns: 
+        result_arr (list): processed array
+        
     """
-    result = input_string.replace(" ", "")
-    return result
-
+    result_arr = []
+    for i in range(1, len(input_arr)): 
+        result_arr.append(input_arr[i] - input_arr[i-1])
+    return result_arr
 
 if __name__ == '__main__': 
-    t = int(input())
-    for i in range(t): 
-        S = input()
-        S = preprocess_string(S)
+    n, w = map(int, input().split())
+    a = list(map(int, input().split()))
+    b = list(map(int, input().split()))
+    
+    if w == 1: 
+        print(n)
+        exit()
+    
+    a_temp = process_array(a)
+    b_temp = process_array(b)
         
-        s = input()
-        s = preprocess_string(s)
-        
-        prefix = [0] * len(s)
-        KMP_preprocess(s, prefix)
-        final_result = KMP_search(S, s, prefix)
-        
-        print("Case {}: {}".format(i + 1, final_result))
+    prefix = [0] * len(b_temp)
+    print(b_temp)
+    
+    KMP_preprocess(b_temp, prefix)
+    print(prefix)
+
+    print(KMP_search(a_temp,  b_temp, prefix))
+    
