@@ -88,10 +88,7 @@ if __name__ == '__main__':
     b_temp = process_array(b)
         
     prefix = [0] * len(b_temp)
-    print(b_temp)
     
     KMP_preprocess(b_temp, prefix)
-    print(prefix)
-
     print(KMP_search(a_temp,  b_temp, prefix))
     
