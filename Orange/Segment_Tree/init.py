@@ -249,3 +249,40 @@ def update_query_sum_query_lazy(seg_tree, lazy, left, right, fr, to, delta, inde
     update_query_min_range_lazy(seg_tree, lazy, mid + 1, right, fr, to, delta, 2 * index + 2)
     seg_tree[index] = seg_tree[2 * index + 1] + seg_tree[2 * index + 2]
                      
+
+def sum_query_lazy(seg_tree, lazy, left, right, fr, to, index): 
+    """
+    Find sum of a segment using lazy segment tree
+    
+    Args: 
+        seg_tree (tree): segment tree
+        lazy (tree): lazy segment tree
+        left (int): left index
+        right (int): right index
+        fr (int): starting position 
+        to (int): ending position
+        index (int): current index
+        
+    """
+    
+    if left > right: 
+        return INF
+    if lazy[index] != 0: 
+        seg_tree[index] += lazy[index] * (right - left + 1)
+        if left != right: # not a leaf node
+            lazy[2 * index + 1] += lazy[index]
+            lazy[2 * index + 2] += lazy[index]
+        lazy[index] = 0
+    
+    # no overlap
+    if fr > right or to > left: 
+        return 0
+    
+    # total overlap
+    if fr <= left and to >= right: 
+        return seg_tree[index]
+    
+    #partal overlap 
+    mid = (left + right) // 2
+    return sum_query_lazy(seg_tree, lazy, mid + 1, right, fr, to, 2 * index + 2) + \
+        sum_query_lazy(seg_tree, lazy, left, mid, fr, to, 2 * index + 1)
