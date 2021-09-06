@@ -26,9 +26,17 @@ Daily coding challenges in Data Structures and Algorithms (mostly Python)
     9. Binary Search
     10. Binary Search Tree
     11. Trie
-## Big 4 Coding interview:
-(Will update soon)
-
-
-
-I’m working on Leetcode’s problems. Will update soon.
+    12. Floyd-Warshall
+    13. Bellman Ford
+ 
+## C. Advanced (Orange):
+    1. Topological sort
+    2. Dynamic programming
+    3. Knapsack
+    4. Backtracking
+    5. Number theory
+    6. Segment tree
+    7. Divide and conquer
+    8. Bitwise
+    9. KMP
+    
