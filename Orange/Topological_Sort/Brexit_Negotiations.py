@@ -1,7 +1,6 @@
 import queue 
 
 MAX = int(10e5 + 1000)
-
 class Node: 
     def __init__(self, i, j): 
         self.i = i 
@@ -9,9 +8,7 @@ class Node:
     
     def __lt__(self, other): 
         return 
-
-
-
+    
 def topological_sort(graph, result): 
     indegree = [0] * (n+1)
     zero_indegree = queue.PriorityQueue()
