@@ -43,6 +43,7 @@ if __name__ == '__main__':
     for i in range(m):
         u, v, w = map(int, input().split())
         graph.append(Edge(u, v, w))
+
     s, t = 0, 4
     result = BellmanFord(s)
 
